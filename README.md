@@ -1,24 +1,51 @@
-# README
+# Ruby on Rails チュートリアルのサンプルアプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+これは、次の教材で作られたサンプルアプリケーションです。
+[_Ruby on Rails チュートリアル_](https://railstutorial.jp/)
+（第 7 版）
+[Michael Hartl](https://www.michaelhartl.com/) 著
 
-Things you may want to cover:
+## ライセンス
 
-- Ruby version
+[Ruby on Rails チュートリアル](https://railstutorial.jp/)内にある
+ソースコードは MIT ライセンスと Beerware ライセンスのもとで公開されています。
+詳細は [LICENSE.md](LICENSE.md) をご覧ください。
 
-- System dependencies
+## 使い方
 
-- Configuration
+このアプリケーションを動かす場合は、まずはリポジトリをフォークしてください。
+次に、ローカル環境にクローンし、プロジェクトディレクトリに移動します。
 
-- Database creation
+```
+$ git clone https://github.com/あなたのユーザー名/リポジトリ名.git
+$ cd リポジトリ名
+```
 
-- Database initialization
+必要な Ruby のバージョンをインストールし（例: 3.2.8）、依存する gem をインストールします。
 
-- How to run the test suite
+```
+$ rbenv install 3.2.8
 
-- Services (job queues, cache servers, search engines, etc.)
+$ rbenv local 3.2.8
 
-- Deployment instructions
+$ gem install rails -v 7.0.4.3
 
-- ...
+$ gem install bundler -v 2.5.6
+
+$ bundle install
+```
+
+次に、データベースへのマイグレーションを実行します。
+
+```
+$ bin/rails db:migrate
+```
+
+最後に、テストを実行してうまく動いているかどうか確認してください。
+
+```
+$ bin/rails test
+```
+
+詳しくは、[_Ruby on Rails チュートリアル_](https://railstutorial.jp/)
+を参考にしてください。
