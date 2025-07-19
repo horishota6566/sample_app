@@ -28,7 +28,7 @@ class UsersIndexAdminTest < UsersIndexAdmin
   end
 
   test "should have delete links" do
-    first_page_of_users = User.paginate(page: 1)
+    first_page_of_users = User.where(activated: true).paginate(page: 1)
     first_page_of_users.each do |user|
       assert_select 'a[href=?]', user_path(user), text: user.name
       unless user == @admin
@@ -43,6 +43,14 @@ class UsersIndexAdminTest < UsersIndexAdmin
     end
     assert_response :see_other
     assert_redirected_to users_url
+  end
+
+  test "should display only activated users" do
+    User.paginate(page: 1).first.toggle! :activated
+    get users_path
+    assigns(:users).each do |user|
+      assert user.activated?
+    end
   end
 end
 
