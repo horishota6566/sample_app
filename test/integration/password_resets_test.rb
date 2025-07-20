@@ -91,6 +91,7 @@ class PasswordUpdateTest < PasswordResetForm
           params: { email: @reset_user.email,
                     user: { password:              "foobarbaz",
                             password_confirmation: "foobarbaz" } }
+    assert_nil @reset_user.reload.reset_digest
     assert is_logged_in?
     assert_not flash.empty?
     assert_redirected_to @reset_user
