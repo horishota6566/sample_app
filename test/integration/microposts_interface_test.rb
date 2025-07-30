@@ -50,3 +50,25 @@ class MicropostsInterfaceTest < MicropostsInterface
     assert_select 'a', { text: 'delete', count: 0 }
   end
 end
+
+class MicropostSidebarTest < MicropostsInterface
+
+  test "should display the right micropost count" do
+    get root_path
+    assert_match "#{@user.microposts.count} microposts", response.body
+  end
+
+  test "should user proper pluralization for zero microposts" do
+    user = users(:malory)
+    log_in_as(user)
+    get root_path
+    assert_match "#{user.microposts.count} microposts", response.body
+  end
+
+  test "should user proper pluralization for one micropost" do
+    user = users(:lana)
+    log_in_as(user)
+    get root_path
+    assert_match "#{user.microposts.count} micropost", response.body
+  end
+end
